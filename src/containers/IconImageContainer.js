@@ -24,9 +24,10 @@ const useStyles = makeStyles((theme) => ({
 		height: props.height ? props.height : "1.2rem",
 		marginRight: props.withText ? ".8rem" : "0",
 	}),
-	imgDimension: () => ({
+	imgDimension: (props) => ({
 		width: "100%",
 		maxWidth: "100%",
+		...props.imgStyles,
 	}),
 	iconTextContainer: (props) => ({
 		width: "100%",
@@ -74,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
 		padding: props.withContainer ? "1rem" : "0",
 		margin: ".5rem 1rem",
 		cursor: "pointer",
-		
+
 		...props.withContainerStyles,
 	}),
 }));

@@ -75,11 +75,17 @@ const useStyles = makeStyles((theme) => ({
 			backgroundColor: "#ff0055",
 			color: "white",
 			transform: "scaleX(1.05) scaleY(1.2)",
-			boxShadow: `0px 0px 5px 1px rgba(0,0,0,0.4)`,
+			boxShadow: `0 .6rem 1.4rem rgba(0,0,0,0.4)`,
 		},
 		"&:not(last-child)": {
 			marginRight: "1rem",
 		},
+	},
+	cardContainer: {
+		height: "100%",
+		width: "90%",
+		flexWrap: "wrap",
+		margin: "0 10rem",
 	},
 }));
 
@@ -94,6 +100,24 @@ const homeMetaData = {
 		"backgrounds",
 		"illustrations",
 		"colors",
+	],
+	cards: [
+		{
+			heading: "test heading",
+			subHeading: "test sub heading",
+			newCheck: "true",
+		},
+		{
+			heading: "test heading",
+			subHeading: "test sub heading",
+			newCheck: "true",
+		},
+		{ heading: "test heading", subHeading: "test sub heading" },
+		{ heading: "test heading", subHeading: "test sub heading" },
+		{ heading: "test heading", subHeading: "test sub heading" },
+		{ heading: "test heading", subHeading: "test sub heading" },
+		{ heading: "test heading", subHeading: "test sub heading" },
+		{ heading: "test heading", subHeading: "test sub heading" },
 	],
 };
 
@@ -134,22 +158,69 @@ const Home = (props) => {
 					classes.centerCenterFlex,
 					classes.footerContainer
 				)}>
-				{/* {homeMetaData &&
-					homeMetaData.map((item) => (
-						<div
-							key={item}
-							className={clsx(
-								classes.rowCenterContainer,
-								classes.centerCenterFlex,
-								classes.navItem
-							)}>
-							<CustomTypography
-								variant="h6"
-								customProps={{ cursor: "pointer", width: "max-content" }}>
-								{item}
-							</CustomTypography>
-						</div>
-					))} */}
+				<div
+					className={clsx(
+						classes.rowCenterContainer,
+						classes.centerCenterFlex,
+						classes.cardContainer
+					)}>
+					{homeMetaData &&
+						homeMetaData.cards &&
+						homeMetaData.cards.map(({ heading, subHeading }) => (
+							<IconImageContainer
+								variant="imgWithText"
+								imgSrc="./images/download.jpeg"
+								imgWidth="100%"
+								imgStyles={{
+									borderRadius: "10px 10px 0 0px",
+								}}
+								imgContainerStyle={{
+									width: "100%",
+									height: "70%",
+									borderRadius: "10px",
+								}}
+								imgMainContainerStyle={{
+									width: "15rem",
+									height: "14rem",
+									flexDirection: "column",
+									justifyContent: "flex-start",
+									alignItems: "center",
+									borderRadius: "10px",
+									border: "1px solid rgba(0,0,0,0.2)",
+									marginBottom: "2rem",
+									marginRight: "2.5rem",
+									transition: "all .2s",
+									"&:hover": {
+										transform: "scaleX(1.02) scaleY(1.02)",
+										boxShadow: `0 1rem 2rem rgba(0,0,0,0.4)`,
+									},
+								}}
+								withText={
+									<div
+										className={clsx(
+											classes.columnCenterContainer,
+											classes.centerStartFlex
+										)}>
+										<CustomTypography
+											variant="h6"
+											align="left"
+											fontWeight="600"
+											mBottom=".2rem"
+											mLeft=".5rem">
+											{heading}
+										</CustomTypography>
+										<CustomTypography
+											variant="body1"
+											align="left"
+											customColor="rgba(0,0,0,0.3)"
+											mLeft=".6rem">
+											{subHeading}
+										</CustomTypography>
+									</div>
+								}
+							/>
+						))}
+				</div>
 			</div>
 		</div>
 	);

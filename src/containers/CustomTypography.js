@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
 		marginBottom: props.mBottom ? props.mBottom : "0",
 		marginTop: props.mTop ? props.mTop : "0",
 		marginRight: props.mRight ? props.mRight : "0",
+		marginLeft: props.mLeft ? props.mLeft : "0",
 		color: props.customColor ? props.customColor : "0",
 		...props.width,
 		...props.height,
