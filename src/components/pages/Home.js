@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, makeStyles } from "@material-ui/core";
 import clsx from "clsx";
 import IconImageContainer from "../../containers/IconImageContainer";
@@ -58,9 +58,23 @@ const useStyles = makeStyles((theme) => ({
 		height: "calc(100% - 40%)",
 	},
 	chipsContainer: {
-		height: "55%",
-		width: "40%",
+		height: "30%",
+		width: "46%",
 		flexWrap: "wrap",
+	},
+	chipActive: {
+		width: "max-content",
+		height: "max-content",
+
+		backgroundColor: "rgba(0,0,0,0.15)",
+		padding: ".4rem .9rem",
+		color: "black",
+		borderRadius: "10rem",
+		backgroundColor: "#ff0055",
+		color: "white",
+		transform: "scaleX(1.03) scaleY(1.1)",
+		boxShadow: `0 .6rem 1.4rem rgba(0,0,0,0.4)`,
+		marginRight: "1rem",
 	},
 	chip: {
 		width: "max-content",
@@ -74,15 +88,15 @@ const useStyles = makeStyles((theme) => ({
 		"&:hover": {
 			backgroundColor: "#ff0055",
 			color: "white",
-			transform: "scaleX(1.05) scaleY(1.2)",
+			transform: "scaleX(1.03) scaleY(1.1)",
 			boxShadow: `0 .6rem 1.4rem rgba(0,0,0,0.4)`,
 		},
 		"&:not(last-child)": {
-			marginRight: "1rem",
+			marginRight: "1.5rem",
 		},
 	},
 	cardContainer: {
-		height: "100%",
+		height: "90%",
 		width: "90%",
 		flexWrap: "wrap",
 		margin: "0 10rem",
@@ -124,6 +138,11 @@ const homeMetaData = {
 const Home = (props) => {
 	const classes = useStyles(props);
 
+	useEffect(() => {
+		const firstNode = document.getElementsByClassName("chipMarker")[0];
+		// firstNode.cl;
+	}, []);
+
 	return (
 		<div
 			className={clsx(
@@ -145,8 +164,10 @@ const Home = (props) => {
 					)}>
 					{homeMetaData &&
 						homeMetaData.chips &&
-						homeMetaData.chips.map((item) => (
-							<div key={item} className={classes.chip}>
+						homeMetaData.chips.map((item, i) => (
+							<div
+								key={item}
+								className={i === 0 ? classes.chipActive : classes.chip}>
 								<CustomTypography variant="body1">{item}</CustomTypography>
 							</div>
 						))}
@@ -166,8 +187,9 @@ const Home = (props) => {
 					)}>
 					{homeMetaData &&
 						homeMetaData.cards &&
-						homeMetaData.cards.map(({ heading, subHeading }) => (
+						homeMetaData.cards.map(({ heading, subHeading }, i) => (
 							<IconImageContainer
+								key={heading + i}
 								variant="imgWithText"
 								imgSrc="./images/download.jpeg"
 								imgWidth="100%"

@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	homeContainer: {
 		width: `calc(100% )`,
+		maxWidth: `1440px`,
 		height: "100%",
 		display: "flex",
 		flexDirection: "column",
