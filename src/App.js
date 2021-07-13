@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { makeStyles } from "@material-ui/core";
+import Header from "./components/layout/Header";
+import Home from "./components/pages/Home";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const useStyles = makeStyles((theme) => ({
+	rootApp: {
+		width: "100vw",
+		height: "100vh",
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "stretch",
+		overflow: "hidden",
+	},
+	mainWrapper: {
+		height: "100%",
+		width: "100%",
+		display: "flex",
+		justifyContent: "flex-start",
+		alignItems: "flex-start",
+	},
+	homeContainer: {
+		width: `calc(100% )`,
+		height: "100%",
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "flex-start",
+		alignItems: "center",
+	},
+}));
+
+const App = ({ getWeatherData, weatherData }) => {
+	const classes = useStyles();
+
+	return (
+		<div className={classes.rootApp}>
+			<div className={classes.homeContainer}>
+				<Header />
+				<Home />
+			</div>
+		</div>
+	);
+};
 
 export default App;
